@@ -4,10 +4,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 
 public class AlertDialogFragment extends DialogFragment {
-	@Override
+
+    @Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
 		final MainActivity main = (MainActivity) getActivity();
 

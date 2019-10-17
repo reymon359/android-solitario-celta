@@ -82,7 +82,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.opcAcercaDe:
                 startActivity(new Intent(this, AcercaDe.class));
                 return true;
+            case R.id.opcReiniciarPartida:
 
+                return true;
             // TODO!!! resto opciones
 
             default:
