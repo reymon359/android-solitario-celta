@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, AcercaDe.class));
                 return true;
             case R.id.opcReiniciarPartida:
-
+                new ReinicioDialogFragment().show(getFragmentManager(), "REINICIO_DIALOG");
                 return true;
             // TODO!!! resto opciones
 
