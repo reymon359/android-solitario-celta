@@ -1,6 +1,7 @@
 package es.upm.miw.SolitarioCelta;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,10 @@ import android.view.View;
 import android.widget.RadioButton;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -74,6 +79,19 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void guardarPartida(){
+        FileOutputStream fos;
+        try {  // Añadir al fichero
+            fos = openFileOutput("PartidaGuardada", Context.MODE_APPEND); // Memoria interna
+            fos.write(miJuego.serializaTablero().getBytes());
+            fos.close();
+            Log.i("Guardando partida", miJuego.serializaTablero());
+        } catch (Exception e) {
+            Log.e("Error Guardar partida", "FILE I/O ERROR: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.opcAjustes:
@@ -85,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.opcReiniciarPartida:
                 new ReinicioDialogFragment().show(getFragmentManager(), "REINICIO_DIALOG");
                 return true;
+            case R.id.opcGuardarPartida:
+                guardarPartida();
+                return true;
+
             // TODO!!! resto opciones
 
             default:
