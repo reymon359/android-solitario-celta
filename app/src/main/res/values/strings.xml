@@ -51,7 +51,7 @@
     <string name="prefTituloCategoria2">Ajustes del juego</string>
 
     <!-- Informacion Partida -->
-    <string name="txtFichasRestantes">Fichas restantes:</string>
+    <string name="txtFichasRestantes">Fichas restantes: </string>
     <string name="txtTiempo">Tiempo:</string>
 
 </resources>
