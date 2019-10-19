@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -29,12 +30,18 @@ public class MainActivity extends AppCompatActivity {
     public final String LOG_KEY = "MiW";
     String partidaGuardada;
 
+    TextView tvFichasRestantes;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tvFichasRestantes = findViewById(R.id.tvFichasRestantes);
+
         miJuego = ViewModelProviders.of(this).get(SCeltaViewModel.class);
         mostrarTablero();
+
+
     }
 
     /**
@@ -78,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                     button.setChecked(miJuego.obtenerFicha(i, j) == JuegoCelta.FICHA);
                 }
             }
+
+        tvFichasRestantes.setText(getString(R.string.txtFichasRestantes) + miJuego.numeroFichas());
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-//    Porque (partidaActual == partidaGuardada) no me funciona
+    //    Porque (partidaActual == partidaGuardada) no me funciona
     public Boolean stringsIguales(String string1, String string2) {
         Boolean iguales = true;
         for (int i = 0; i < string1.length(); i++) {
@@ -142,21 +151,9 @@ public class MainActivity extends AppCompatActivity {
                 crearSnackbar(R.string.txtErrorRecuperarPartida + e.getMessage());
             }
 
-            // If partida actual == partida guardada
-            //           la recupera + snackbar recuperada
-            // Else
-            // Dialog de que la partida ha cambiado y pide confirmacion
-            // No cierra dialog
-            // si recupera partida + snackbar recuperada
-
-
         } else {
             crearSnackbar(getString(R.string.txtNoFichero));
         }
-
-        BufferedReader fin;
-//        tvContenidoFichero.setText("");
-
 
     }
 
@@ -191,4 +188,5 @@ public class MainActivity extends AppCompatActivity {
                 text,
                 Snackbar.LENGTH_LONG).show();
     }
+
 }
