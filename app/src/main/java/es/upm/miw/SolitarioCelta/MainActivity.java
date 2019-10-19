@@ -21,6 +21,8 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import static java.lang.Integer.parseInt;
+
 public class MainActivity extends AppCompatActivity {
 
     SCeltaViewModel miJuego;
@@ -85,8 +87,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void guardarPartida() {
         FileOutputStream fos;
+        File file = new File(getApplicationContext().getFilesDir(), "PartidaGuardada");
+        if (file.exists()) {
+            file.delete();
+        }
         try {  // Añadir al fichero
             fos = openFileOutput("PartidaGuardada", Context.MODE_APPEND); // Memoria interna
+
             fos.write(miJuego.serializaTablero().getBytes());
             fos.close();
             crearSnackbar(getString(R.string.txtPartidaGuardada));
@@ -98,9 +105,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+//    Porque (partidaActual == partidaGuardada) no me funciona
+    public Boolean stringsIguales(String string1, String string2) {
+        Boolean iguales = true;
+        for (int i = 0; i < string1.length(); i++) {
+            iguales = string1.charAt(i) == string2.charAt(i);
+            if (!iguales) {
+                break;
+            }
+        }
+        return iguales;
+    }
+
+
     public void recuperarPartida() {
-
-
         if (new File(getApplicationContext().getFilesDir(), "PartidaGuardada").exists()) {
             String partidaActual = miJuego.serializaTablero();
             String partidaGuardada;
@@ -109,12 +127,19 @@ public class MainActivity extends AppCompatActivity {
                         new InputStreamReader(openFileInput("PartidaGuardada"))); // Memoria interna
                 partidaGuardada = fin.readLine();
                 fin.close();
-                crearSnackbar(partidaGuardada);
+                if (stringsIguales(partidaActual, partidaGuardada)) {
+                    miJuego.deserializaTablero(partidaGuardada);
+                    crearSnackbar(getString(R.string.txtPartidaRecuperada));
+                } else {
+                    crearSnackbar("partidas no iguales");
+                }
+
             } catch (Exception e) {
-                Log.e("Error Recuperar partida partida", "FILE I/O ERROR: " + e.getMessage());
+                Log.e("Error Recuperar partida", "FILE I/O ERROR: " + e.getMessage());
                 e.printStackTrace();
                 crearSnackbar(R.string.txtErrorRecuperarPartida + e.getMessage());
             }
+
             // If partida actual == partida guardada
             //           la recupera + snackbar recuperada
             // Else
@@ -159,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void crearSnackbar(String text){
+    public void crearSnackbar(String text) {
         Snackbar.make(findViewById(android.R.id.content),
                 text,
                 Snackbar.LENGTH_LONG).show();

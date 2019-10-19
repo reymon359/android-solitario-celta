@@ -1,5 +1,7 @@
 package es.upm.miw.SolitarioCelta;
 
+import android.support.design.widget.Snackbar;
+
 class JuegoCelta {
 
 	static final int TAMANIO = 7;
