@@ -20,7 +20,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-	SCeltaViewModel miJuego;
+    SCeltaViewModel miJuego;
     public final String LOG_KEY = "MiW";
 
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
      * Se ejecuta al pulsar una ficha
      * Las coordenadas (i, j) se obtienen a partir del nombre del recurso, ya que el botón
      * tiene un identificador en formato pXY, donde X es la fila e Y la columna
+     *
      * @param v Vista de la ficha pulsada
      */
     public void fichaPulsada(@NotNull View v) {
@@ -79,16 +80,22 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void guardarPartida(){
+    public void guardarPartida() {
         FileOutputStream fos;
         try {  // Añadir al fichero
             fos = openFileOutput("PartidaGuardada", Context.MODE_APPEND); // Memoria interna
             fos.write(miJuego.serializaTablero().getBytes());
             fos.close();
+            Snackbar.make(findViewById(android.R.id.content),
+                    getString(R.string.txtPartidaGuardada),
+                    Snackbar.LENGTH_LONG).show();
             Log.i("Guardando partida", miJuego.serializaTablero());
         } catch (Exception e) {
             Log.e("Error Guardar partida", "FILE I/O ERROR: " + e.getMessage());
             e.printStackTrace();
+            String errorGuardarPartida = R.string.txtErrorPartidaGuardada + e.getMessage();
+            Snackbar.make(findViewById(android.R.id.content), errorGuardarPartida,
+                    Snackbar.LENGTH_LONG).show();
         }
     }
 

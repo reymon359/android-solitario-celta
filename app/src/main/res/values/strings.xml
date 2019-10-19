@@ -3,10 +3,15 @@
 
     <string name="app_name">Solitario Celta</string>
     <string name="txtSinImplementar">¡No implementado aún!</string>
+
     <string name="txtReiniciarPartida">Reiniciar</string>
     <string name="txtOpcionGuardar">Guardar Partida</string>
     <string name="txtOpcionRecuperar">Recuperar Partida</string>
     <string name="txtOpcionMejoresResultados">Mejores Resultados</string>
+
+    <!-- guardar Partida Snackbars -->
+    <string name="txtPartidaGuardada">¡Partida Guardada!</string>
+    <string name="txtErrorPartidaGuardada">Error al Guardar la Partida.</string>
 
     <!-- Diálogo Final -->
     <string name="txtDialogoFinalTitulo">Fin del juego</string>
