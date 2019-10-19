@@ -89,16 +89,12 @@ public class MainActivity extends AppCompatActivity {
             fos = openFileOutput("PartidaGuardada", Context.MODE_APPEND); // Memoria interna
             fos.write(miJuego.serializaTablero().getBytes());
             fos.close();
-            Snackbar.make(findViewById(android.R.id.content),
-                    getString(R.string.txtPartidaGuardada),
-                    Snackbar.LENGTH_LONG).show();
+            crearSnackbar(getString(R.string.txtPartidaGuardada));
             Log.i("Guardando partida", miJuego.serializaTablero());
         } catch (Exception e) {
             Log.e("Error Guardar partida", "FILE I/O ERROR: " + e.getMessage());
             e.printStackTrace();
-            String errorGuardarPartida = R.string.txtErrorPartidaGuardada + e.getMessage();
-            Snackbar.make(findViewById(android.R.id.content), errorGuardarPartida,
-                    Snackbar.LENGTH_LONG).show();
+            crearSnackbar(R.string.txtErrorPartidaGuardada + e.getMessage());
         }
     }
 
@@ -106,15 +102,34 @@ public class MainActivity extends AppCompatActivity {
 
 
         if (new File(getApplicationContext().getFilesDir(), "PartidaGuardada").exists()) {
-            Snackbar.make(findViewById(android.R.id.content),
-                    "Existe",
-                    Snackbar.LENGTH_LONG).show();
+            String partidaActual = miJuego.serializaTablero();
+            String partidaGuardada;
+            try {
+                BufferedReader fin = new BufferedReader(
+                        new InputStreamReader(openFileInput("PartidaGuardada"))); // Memoria interna
+                partidaGuardada = fin.readLine();
+                fin.close();
+                crearSnackbar(partidaGuardada);
+            } catch (Exception e) {
+                Log.e("Error Recuperar partida partida", "FILE I/O ERROR: " + e.getMessage());
+                e.printStackTrace();
+                crearSnackbar(R.string.txtErrorRecuperarPartida + e.getMessage());
+            }
+            // If partida actual == partida guardada
+            //           la recupera + snackbar recuperada
+            // Else
+            // Dialog de que la partida ha cambiado y pide confirmacion
+            // No cierra dialog
+            // si recupera partida + snackbar recuperada
+
 
         } else {
-            Snackbar.make(findViewById(android.R.id.content),
-                    getString(R.string.txtNoFichero),
-                    Snackbar.LENGTH_SHORT).show();
+            crearSnackbar(getString(R.string.txtNoFichero));
         }
+
+        BufferedReader fin;
+//        tvContenidoFichero.setText("");
+
 
     }
 
@@ -139,12 +154,14 @@ public class MainActivity extends AppCompatActivity {
             // TODO!!! resto opciones
 
             default:
-                Snackbar.make(
-                        findViewById(android.R.id.content),
-                        getString(R.string.txtSinImplementar),
-                        Snackbar.LENGTH_LONG
-                ).show();
+                crearSnackbar(getString(R.string.txtSinImplementar));
         }
         return true;
+    }
+
+    public void crearSnackbar(String text){
+        Snackbar.make(findViewById(android.R.id.content),
+                text,
+                Snackbar.LENGTH_LONG).show();
     }
 }

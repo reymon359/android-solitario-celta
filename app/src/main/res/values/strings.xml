@@ -15,6 +15,7 @@
 
     <!-- Recuperar Partida Snackbars -->
     <string name="txtNoFichero">No hay ninguna partida guardada que recuperar.</string>
+    <string name="txtErrorRecuperarPartida">Error al Recuperar la Partida.</string>
 
     <!-- Diálogo Final -->
     <string name="txtDialogoFinalTitulo">Fin del juego</string>
