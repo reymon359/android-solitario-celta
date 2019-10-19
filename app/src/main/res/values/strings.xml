@@ -9,9 +9,12 @@
     <string name="txtOpcionRecuperar">Recuperar Partida</string>
     <string name="txtOpcionMejoresResultados">Mejores Resultados</string>
 
-    <!-- guardar Partida Snackbars -->
+    <!-- Guardar Partida Snackbars -->
     <string name="txtPartidaGuardada">¡Partida Guardada!</string>
     <string name="txtErrorPartidaGuardada">Error al Guardar la Partida.</string>
+
+    <!-- Recuperar Partida Snackbars -->
+    <string name="txtNoFichero">No hay ninguna partida guardada que recuperar.</string>
 
     <!-- Diálogo Final -->
     <string name="txtDialogoFinalTitulo">Fin del juego</string>

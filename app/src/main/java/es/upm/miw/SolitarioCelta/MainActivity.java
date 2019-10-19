@@ -14,7 +14,10 @@ import android.widget.RadioButton;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -99,6 +102,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void recuperarPartida() {
+
+
+        if (new File(getApplicationContext().getFilesDir(), "PartidaGuardada").exists()) {
+            Snackbar.make(findViewById(android.R.id.content),
+                    "Existe",
+                    Snackbar.LENGTH_LONG).show();
+
+        } else {
+            Snackbar.make(findViewById(android.R.id.content),
+                    getString(R.string.txtNoFichero),
+                    Snackbar.LENGTH_SHORT).show();
+        }
+
+    }
+
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.opcAjustes:
@@ -112,6 +131,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.opcGuardarPartida:
                 guardarPartida();
+                return true;
+            case R.id.opcRecuperarPartida:
+                recuperarPartida();
                 return true;
 
             // TODO!!! resto opciones
