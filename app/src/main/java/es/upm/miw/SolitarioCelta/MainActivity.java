@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     SCeltaViewModel miJuego;
     public final String LOG_KEY = "MiW";
+    String partidaGuardada;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,17 +122,18 @@ public class MainActivity extends AppCompatActivity {
     public void recuperarPartida() {
         if (new File(getApplicationContext().getFilesDir(), "PartidaGuardada").exists()) {
             String partidaActual = miJuego.serializaTablero();
-            String partidaGuardada;
+
             try {
                 BufferedReader fin = new BufferedReader(
                         new InputStreamReader(openFileInput("PartidaGuardada"))); // Memoria interna
                 partidaGuardada = fin.readLine();
                 fin.close();
+
                 if (stringsIguales(partidaActual, partidaGuardada)) {
                     miJuego.deserializaTablero(partidaGuardada);
                     crearSnackbar(getString(R.string.txtPartidaRecuperada));
                 } else {
-                    crearSnackbar("partidas no iguales");
+                    new RecuperarPartidaDialogFragment().show(getFragmentManager(), "REINICIO_DIALOG");
                 }
 
             } catch (Exception e) {

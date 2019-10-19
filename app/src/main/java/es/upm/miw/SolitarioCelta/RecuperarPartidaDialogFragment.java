@@ -5,8 +5,9 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 
-public class ReinicioDialogFragment extends DialogFragment {
+public class RecuperarPartidaDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -14,21 +15,21 @@ public class ReinicioDialogFragment extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(main);
         builder
-                .setTitle(R.string.txtDialogoReiniciarTitulo)
-                .setMessage(R.string.txtDialogoReiniciarPregunta)
+                .setTitle(R.string.txtDialogoRecuperarPartidaTitulo)
+                .setMessage(R.string.txtDialogoRecuperarPartidaPregunta)
                 .setPositiveButton(
-                        getString(R.string.txtDialogoReiniciarAfirmativo),
+                        getString(R.string.txtDialogoRecuperarPartidaAfirmativo),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                main.miJuego.reiniciar();
-                                main.crearSnackbar(getString(R.string.txtPartidaReiniciada));
+                                main.miJuego.deserializaTablero(main.partidaGuardada);
+                                main.crearSnackbar(getString(R.string.txtPartidaRecuperada));
                                 main.mostrarTablero();
                             }
                         }
                 )
                 .setNegativeButton(
-                        getString(R.string.txtDialogoReiniciarNegativo),
+                        getString(R.string.txtDialogoRecuperarPartidaNegativo),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {

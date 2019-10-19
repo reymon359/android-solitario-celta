@@ -5,6 +5,7 @@
     <string name="txtSinImplementar">¡No implementado aún!</string>
 
     <string name="txtReiniciarPartida">Reiniciar</string>
+    <string name="txtPartidaReiniciada">¡Partida Reiniciada!</string>
     <string name="txtOpcionGuardar">Guardar Partida</string>
     <string name="txtOpcionRecuperar">Recuperar Partida</string>
     <string name="txtOpcionMejoresResultados">Mejores Resultados</string>
@@ -17,6 +18,12 @@
     <string name="txtNoFichero">No hay ninguna partida guardada que recuperar.</string>
     <string name="txtErrorRecuperarPartida">Error al Recuperar la Partida.</string>
     <string name="txtPartidaRecuperada">¡Partida Recuperada!</string>
+
+        <!-- Diálogo Recuperar Partida -->
+        <string name="txtDialogoRecuperarPartidaTitulo">Recuperar Partida</string>
+        <string name="txtDialogoRecuperarPartidaPregunta">La partida actual es distinta a la partida guardada que intentas recuperar. ¿Deseas recuperarla de todos modos?</string>
+        <string name="txtDialogoRecuperarPartidaAfirmativo">Sí</string>
+        <string name="txtDialogoRecuperarPartidaNegativo">No</string>
 
     <!-- Diálogo Final -->
     <string name="txtDialogoFinalTitulo">Fin del juego</string>
