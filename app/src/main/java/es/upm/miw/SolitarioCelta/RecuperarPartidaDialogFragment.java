@@ -24,6 +24,7 @@ public class RecuperarPartidaDialogFragment extends DialogFragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 main.miJuego.deserializaTablero(main.partidaGuardada);
                                 main.crearSnackbar(getString(R.string.txtPartidaRecuperada));
+                                main.reiniciarCronometro();
                                 main.mostrarTablero();
                             }
                         }

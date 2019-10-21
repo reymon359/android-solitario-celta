@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvCronometro;
     long tiempoComienzo = 0;
     Handler cronometroHandler = new Handler();
-
+    int segundos, minutos;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,20 +48,23 @@ public class MainActivity extends AppCompatActivity {
         mostrarTablero();
     }
 
+    public void reiniciarCronometro() {
+        minutos = segundos = 0;
+        tiempoComienzo = System.currentTimeMillis();
+    }
 
     Runnable cronometroRunnable = new Runnable() {
         @Override
         public void run() {
             long milis = System.currentTimeMillis() - tiempoComienzo;
-            int segundos = (int) (milis / 1000);
-            int minutos = segundos / 60;
+            segundos = (int) (milis / 1000);
+            minutos = segundos / 60;
             segundos = segundos % 60;
 
             tvCronometro.setText(getString(R.string.txtCronometro) + String.format("  %d:%02d", minutos, segundos));
             cronometroHandler.postDelayed(this, 500);
         }
     };
-
 
     /**
      * Se ejecuta al pulsar una ficha

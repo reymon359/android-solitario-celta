@@ -23,6 +23,7 @@ public class ReinicioDialogFragment extends DialogFragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 main.miJuego.reiniciar();
                                 main.crearSnackbar(getString(R.string.txtPartidaReiniciada));
+                                main.reiniciarCronometro();
                                 main.mostrarTablero();
                             }
                         }
