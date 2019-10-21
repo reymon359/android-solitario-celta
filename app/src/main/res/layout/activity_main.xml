@@ -18,15 +18,16 @@
             android:id="@+id/tvFichasRestantes"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
-            android:textSize="18dp"></TextView>
+            android:layout_weight="3"
+            android:textSize="25sp" ></TextView>
 
-        <TextView
-            android:id="@+id/tvCronometro"
+        <Chronometer
+            android:id="@+id/chronometer"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="18dp"></TextView>
+            android:textSize="25sp" />
+
 
     </LinearLayout>
 

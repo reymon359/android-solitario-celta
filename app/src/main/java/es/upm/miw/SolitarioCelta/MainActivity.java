@@ -5,12 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -28,11 +30,7 @@ public class MainActivity extends AppCompatActivity {
     String partidaGuardada;
 
     TextView tvFichasRestantes;
-
-    TextView tvCronometro;
-    long tiempoComienzo = 0;
-    Handler cronometroHandler = new Handler();
-    int segundos, minutos;
+    Chronometer crono;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,31 +38,20 @@ public class MainActivity extends AppCompatActivity {
 
         tvFichasRestantes = findViewById(R.id.tvFichasRestantes);
 
-        tvCronometro = (TextView) findViewById(R.id.tvCronometro);
-        tiempoComienzo = System.currentTimeMillis();
-        cronometroHandler.postDelayed(cronometroRunnable, 0);
+
+        crono = findViewById(R.id.chronometer);
+        crono.setBase(SystemClock.uptimeMillis());
+        crono.start();
 
         miJuego = ViewModelProviders.of(this).get(SCeltaViewModel.class);
         mostrarTablero();
     }
 
     public void reiniciarCronometro() {
-        minutos = segundos = 0;
-        tiempoComienzo = System.currentTimeMillis();
+        crono.setBase(SystemClock.uptimeMillis());
+        crono.start();
+
     }
-
-    Runnable cronometroRunnable = new Runnable() {
-        @Override
-        public void run() {
-            long milis = System.currentTimeMillis() - tiempoComienzo;
-            segundos = (int) (milis / 1000);
-            minutos = segundos / 60;
-            segundos = segundos % 60;
-
-            tvCronometro.setText(getString(R.string.txtCronometro) + String.format("  %d:%02d", minutos, segundos));
-            cronometroHandler.postDelayed(this, 500);
-        }
-    };
 
     /**
      * Se ejecuta al pulsar una ficha
@@ -162,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (stringsIguales(partidaActual, partidaGuardada)) {
                     miJuego.deserializaTablero(partidaGuardada);
+                    reiniciarCronometro();
                     crearSnackbar(getString(R.string.txtPartidaRecuperada));
                 } else {
                     new RecuperarPartidaDialogFragment().show(getFragmentManager(), "REINICIO_DIALOG");
