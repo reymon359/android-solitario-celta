@@ -52,6 +52,6 @@
 
     <!-- Informacion Partida -->
     <string name="txtFichasRestantes">Fichas restantes: </string>
-    <string name="txtTiempo">Tiempo:</string>
+    <string name="txtCronometro">Tiempo: </string>
 
 </resources>

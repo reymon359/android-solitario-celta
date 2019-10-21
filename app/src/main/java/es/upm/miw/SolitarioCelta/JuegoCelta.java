@@ -9,6 +9,7 @@ class JuegoCelta {
     static final int FICHA = 1;
     private static final int NUM_MOVIMIENTOS = 4;
 	private int[][] tablero;
+	private int tiempoJuego;
 
     private static final int[][] TABLERO_INICIAL = {	// Posiciones válidas del tablero
             {HUECO, HUECO, FICHA, FICHA, FICHA, HUECO, HUECO},

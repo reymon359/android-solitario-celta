@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -19,10 +20,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static java.lang.Integer.parseInt;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,17 +29,39 @@ public class MainActivity extends AppCompatActivity {
 
     TextView tvFichasRestantes;
 
+    TextView tvCronometro;
+    long tiempoComienzo = 0;
+    Handler cronometroHandler = new Handler();
+
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         tvFichasRestantes = findViewById(R.id.tvFichasRestantes);
 
+        tvCronometro = (TextView) findViewById(R.id.tvCronometro);
+        tiempoComienzo = System.currentTimeMillis();
+        cronometroHandler.postDelayed(cronometroRunnable, 0);
+
         miJuego = ViewModelProviders.of(this).get(SCeltaViewModel.class);
         mostrarTablero();
-
-
     }
+
+
+    Runnable cronometroRunnable = new Runnable() {
+        @Override
+        public void run() {
+            long milis = System.currentTimeMillis() - tiempoComienzo;
+            int segundos = (int) (milis / 1000);
+            int minutos = segundos / 60;
+            segundos = segundos % 60;
+
+            tvCronometro.setText(getString(R.string.txtCronometro) + String.format("  %d:%02d", minutos, segundos));
+            cronometroHandler.postDelayed(this, 500);
+        }
+    };
+
 
     /**
      * Se ejecuta al pulsar una ficha
