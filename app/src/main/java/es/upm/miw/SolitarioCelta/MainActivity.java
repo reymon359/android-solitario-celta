@@ -22,8 +22,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.util.List;
 
 import es.upm.miw.SolitarioCelta.models.RepositorioResultados;
+import es.upm.miw.SolitarioCelta.models.Resultado;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvFichasRestantes;
     Chronometer crono;
 
+    List<Resultado> listaResultados;
     RepositorioResultados repositorioResultados;
 
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         repositorioResultados = new RepositorioResultados(getApplicationContext());
         Log.i("hola", "Numero resultados=" + repositorioResultados.count());
 
+        // Obtener resultados
+        listaResultados = repositorioResultados.readAll();
+        Log.i("listaResultados", listaResultados.toString());
 
         crono = findViewById(R.id.chronometer);
         crono.setBase(SystemClock.uptimeMillis());
@@ -130,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             crearSnackbar(R.string.txtErrorPartidaGuardada + e.getMessage());
         }
+
     }
 
     //    Porque (partidaActual == partidaGuardada) no me funciona
