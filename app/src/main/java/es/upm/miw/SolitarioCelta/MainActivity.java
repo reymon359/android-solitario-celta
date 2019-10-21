@@ -23,6 +23,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 
+import es.upm.miw.SolitarioCelta.models.RepositorioResultados;
+
 public class MainActivity extends AppCompatActivity {
 
     SCeltaViewModel miJuego;
@@ -32,11 +34,17 @@ public class MainActivity extends AppCompatActivity {
     TextView tvFichasRestantes;
     Chronometer crono;
 
+    RepositorioResultados repositorioResultados;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         tvFichasRestantes = findViewById(R.id.tvFichasRestantes);
+
+        // Crear Repositorio
+        repositorioResultados = new RepositorioResultados(getApplicationContext());
+        Log.i("hola", "Numero resultados=" + repositorioResultados.count());
 
 
         crono = findViewById(R.id.chronometer);
