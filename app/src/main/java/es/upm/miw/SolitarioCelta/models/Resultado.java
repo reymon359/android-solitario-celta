@@ -59,6 +59,7 @@ public class Resultado implements Parcelable {
         return 0;
     }
 
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
@@ -84,4 +85,14 @@ public class Resultado implements Parcelable {
             return new Resultado[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "Resultado{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", fecha=" + fecha +
+                ", piezas=" + piezas +
+                '}';
+    }
 }
