@@ -3,9 +3,11 @@ package es.upm.miw.SolitarioCelta;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,6 +31,9 @@ import es.upm.miw.SolitarioCelta.models.Resultado;
 
 public class MainActivity extends AppCompatActivity {
 
+    private String nombre_Jugador;
+    private String color_fichas;
+
     SCeltaViewModel miJuego;
     public final String LOG_KEY = "MiW";
     String partidaGuardada;
@@ -42,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recogerPreferencias(this);
 
         tvFichasRestantes = findViewById(R.id.tvFichasRestantes);
 
@@ -59,6 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
         miJuego = ViewModelProviders.of(this).get(SCeltaViewModel.class);
         mostrarTablero();
+    }
+
+    public void recogerPreferencias(Context context) {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+        nombre_Jugador = sharedPref.getString("nombreJugador", "nombrePorDefecto");
+
     }
 
     public void reiniciarCronometro() {
@@ -91,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void guardarPuntuacion() {
-        Long idNuevo = repositorioResultados.add("nombre", (int) System.currentTimeMillis(), miJuego.numeroFichas());
+        Long idNuevo = repositorioResultados.add(nombre_Jugador, (int) System.currentTimeMillis(), miJuego.numeroFichas());
         if (idNuevo != null) {
             crearSnackbar(getString(R.string.txtResultadoGuardado) + idNuevo);
         } else {
