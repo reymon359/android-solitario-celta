@@ -82,19 +82,8 @@ public class MainActivity extends AppCompatActivity {
         nombre_Jugador = sharedPref.getString("nombreJugador", "nombreDefault");
         cronometro_activo = sharedPref.getBoolean("mostrarCronometro", true);
         fichas_restantes = sharedPref.getBoolean("mostrarFichasRestantes", true);
-        crono.setVisibility((!cronometro_activo)?View.INVISIBLE:View.VISIBLE);
-//        if (!cronometro_activo) {
-//            crono.setVisibility(View.INVISIBLE);
-//        } else {
-//            crono.setVisibility(View.VISIBLE);
-//        }
-        if (!fichas_restantes) {
-            tvFichasRestantes.setVisibility(View.INVISIBLE);
-        } else {
-            tvFichasRestantes.setVisibility(View.VISIBLE);
-        }
-
-
+        crono.setVisibility((cronometro_activo)?View.VISIBLE:View.INVISIBLE);
+        tvFichasRestantes.setVisibility((fichas_restantes)?View.VISIBLE:View.INVISIBLE);
     }
 
     public void reiniciarCronometro() {
