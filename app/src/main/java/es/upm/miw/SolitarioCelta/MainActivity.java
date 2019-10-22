@@ -32,7 +32,8 @@ import es.upm.miw.SolitarioCelta.models.Resultado;
 public class MainActivity extends AppCompatActivity {
 
     private String nombre_Jugador;
-    private String color_fichas;
+    private Boolean cronometro_activo;
+    private Boolean fichas_restantes;
 
     SCeltaViewModel miJuego;
     public final String LOG_KEY = "MiW";
@@ -48,9 +49,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recogerPreferencias(this);
-
         tvFichasRestantes = findViewById(R.id.tvFichasRestantes);
+        crono = findViewById(R.id.chronometer);
+
+        recogerPreferencias(this);
 
         // Crear Repositorio
         repositorioResultados = new RepositorioResultados(getApplicationContext());
@@ -60,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         listaResultados = repositorioResultados.readAll();
         Log.i("listaResultados", listaResultados.toString());
 
-        crono = findViewById(R.id.chronometer);
+
         crono.setBase(SystemClock.uptimeMillis());
         crono.start();
 
@@ -68,9 +70,30 @@ public class MainActivity extends AppCompatActivity {
         mostrarTablero();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        recogerPreferencias(this);
+    }
+
+
     public void recogerPreferencias(Context context) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        nombre_Jugador = sharedPref.getString("nombreJugador", "nombrePorDefecto");
+        nombre_Jugador = sharedPref.getString("nombreJugador", "nombreDefault");
+        cronometro_activo = sharedPref.getBoolean("mostrarCronometro", true);
+        fichas_restantes = sharedPref.getBoolean("mostrarFichasRestantes", true);
+        crono.setVisibility((!cronometro_activo)?View.INVISIBLE:View.VISIBLE);
+//        if (!cronometro_activo) {
+//            crono.setVisibility(View.INVISIBLE);
+//        } else {
+//            crono.setVisibility(View.VISIBLE);
+//        }
+        if (!fichas_restantes) {
+            tvFichasRestantes.setVisibility(View.INVISIBLE);
+        } else {
+            tvFichasRestantes.setVisibility(View.VISIBLE);
+        }
+
 
     }
 

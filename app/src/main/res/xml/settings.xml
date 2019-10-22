@@ -2,18 +2,23 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
     <PreferenceCategory
-        android:title="@string/prefTituloCategoria1"
-        android:key="opc_Fichero">
+        android:key="opc_Fichero"
+        android:title="@string/prefTituloCategoria1">
         <EditTextPreference
             android:key="nombreJugador"
-            android:title="@string/prefTituloNombreJugador"
-            android:summary="@string/prefTextoNombreJugador" />
+            android:summary="@string/prefTextoNombreJugador"
+            android:title="@string/prefTituloNombreJugador" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/prefTituloCategoria2">
-
-        <!-- TODO Añadir otros ajustes -->
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="mostrarCronometro"
+            android:title="@string/prefTituloMostrarCronometro" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="mostrarFichasRestantes"
+            android:title="@string/prefTituloMostrarFichasRestantes" />
     </PreferenceCategory>
 </PreferenceScreen>
