@@ -83,7 +83,7 @@ public class RepositorioResultados extends SQLiteOpenHelper {
                         cursor.getInt(cursor.getColumnIndex(tablaResultado.COL_NAME_PIEZAS))
                 );
                 listaResultado.add(resultado);
-                cursor.moveToFirst();
+                cursor.moveToNext();
             }
         }
 

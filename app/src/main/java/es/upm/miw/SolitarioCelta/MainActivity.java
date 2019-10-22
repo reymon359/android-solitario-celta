@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
     public void reiniciarCronometro() {
         crono.setBase(SystemClock.uptimeMillis());
         crono.start();
-
     }
 
     /**
@@ -86,7 +85,17 @@ public class MainActivity extends AppCompatActivity {
         mostrarTablero();
         if (miJuego.juegoTerminado()) {
             // TODO guardar puntuación
+            guardarResultado();
             new AlertDialogFragment().show(getFragmentManager(), "ALERT_DIALOG");
+        }
+    }
+
+    public void guardarResultado() {
+        Long idNuevo = repositorioResultados.add("nombre", (int) System.currentTimeMillis(), miJuego.numeroFichas());
+        if (idNuevo != null) {
+            crearSnackbar(getString(R.string.txtResultadoGuardado) + idNuevo);
+        } else {
+            crearSnackbar(getString(R.string.txtErrorResultadoGuardado));
         }
     }
 

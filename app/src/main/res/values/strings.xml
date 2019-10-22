@@ -10,6 +10,10 @@
     <string name="txtOpcionRecuperar">Recuperar Partida</string>
     <string name="txtOpcionMejoresResultados">Mejores Resultados</string>
 
+    <!-- Resultado -->
+    <string name="txtResultadoGuardado">Se ha guardado el resultado con id:</string>
+    <string name="txtErrorResultadoGuardado">Ha habido un error al guardar el resultado.</string>
+
     <!-- Guardar Partida -->
     <string name="txtPartidaGuardada">¡Partida Guardada!</string>
     <string name="txtErrorPartidaGuardada">Error al Guardar la Partida.</string>

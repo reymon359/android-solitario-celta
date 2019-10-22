@@ -123,20 +123,14 @@ class JuegoCelta {
                 tablero[iSaltada][jSaltada] = HUECO;
                 tablero[iDestino][jDestino] = FICHA;
 
-                if (juegoTerminado())
+                if (juegoTerminado()) {
                     estadoActual = Estado.ESTADO_TERMINADO;
-                guardarResultado();
+                }
             } else { // El movimiento no es aceptable, la última ficha pasa a ser la seleccionada
                 iSeleccionada = iDestino;
                 jSeleccionada = jDestino;
             }
         }
-    }
-
-    public Long guardarResultado() {
-        Resultado resultadoGuardado;
-        Long idNuevo = repositorioResultados.add("nombre", (int) System.currentTimeMillis(), numeroFichas());
-        return idNuevo;
     }
 
     /**
