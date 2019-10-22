@@ -29,6 +29,8 @@ import java.util.List;
 import es.upm.miw.SolitarioCelta.models.RepositorioResultados;
 import es.upm.miw.SolitarioCelta.models.Resultado;
 
+import static java.lang.Integer.parseInt;
+
 public class MainActivity extends AppCompatActivity {
 
     private String nombre_Jugador;
@@ -52,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         tvFichasRestantes = findViewById(R.id.tvFichasRestantes);
         crono = findViewById(R.id.chronometer);
 
+        crono.setBase((null != savedInstanceState) ?
+                savedInstanceState.getLong("tiempoCrono")
+                : SystemClock.uptimeMillis());
+        crono.start();
+
+
         recogerPreferencias(this);
 
         // Crear Repositorio
@@ -63,11 +71,15 @@ public class MainActivity extends AppCompatActivity {
         Log.i("listaResultados", listaResultados.toString());
 
 
-        crono.setBase(SystemClock.uptimeMillis());
-        crono.start();
-
         miJuego = ViewModelProviders.of(this).get(SCeltaViewModel.class);
         mostrarTablero();
+    }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong("tiempoCrono", crono.getBase());
     }
 
     @Override
@@ -82,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
         nombre_Jugador = sharedPref.getString("nombreJugador", "nombreDefault");
         cronometro_activo = sharedPref.getBoolean("mostrarCronometro", true);
         fichas_restantes = sharedPref.getBoolean("mostrarFichasRestantes", true);
-        crono.setVisibility((cronometro_activo)?View.VISIBLE:View.INVISIBLE);
-        tvFichasRestantes.setVisibility((fichas_restantes)?View.VISIBLE:View.INVISIBLE);
+        crono.setVisibility((cronometro_activo) ? View.VISIBLE : View.INVISIBLE);
+        tvFichasRestantes.setVisibility((fichas_restantes) ? View.VISIBLE : View.INVISIBLE);
     }
 
     public void reiniciarCronometro() {
