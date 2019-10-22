@@ -2,9 +2,10 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="resultado"
-            type="es.upm.miw.SolitarioCelta.models.Resultado" />
+            type="es.upm.miw.solitarioCelta.models.Resultado" />
     </data>
 
     <LinearLayout
@@ -19,7 +20,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text=""
+            android:text="@{resultado.nombre}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -28,7 +29,7 @@
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:gravity="center"
-            android:text=""
+            android:text="@{  resultado.fecha.toString()}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -37,7 +38,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text=""
+            android:text="@{resultado.piezas.toString()}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
 

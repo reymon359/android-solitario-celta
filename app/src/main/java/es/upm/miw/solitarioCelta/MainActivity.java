@@ -1,11 +1,10 @@
-package es.upm.miw.SolitarioCelta;
+package es.upm.miw.solitarioCelta;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
@@ -26,8 +25,8 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 
-import es.upm.miw.SolitarioCelta.models.RepositorioResultados;
-import es.upm.miw.SolitarioCelta.models.Resultado;
+import es.upm.miw.solitarioCelta.models.RepositorioResultados;
+import es.upm.miw.solitarioCelta.models.Resultado;
 
 import static java.lang.Integer.parseInt;
 

@@ -1,44 +1,42 @@
-package es.upm.miw.SolitarioCelta;
+package es.upm.miw.solitarioCelta;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 
-public class RecuperarPartidaDialogFragment extends DialogFragment {
+public class AlertDialogFragment extends DialogFragment {
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final MainActivity main = (MainActivity) getActivity();
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+		final MainActivity main = (MainActivity) getActivity();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(main);
         builder
-                .setTitle(R.string.txtDialogoRecuperarPartidaTitulo)
-                .setMessage(R.string.txtDialogoRecuperarPartidaPregunta)
+                .setTitle(R.string.txtDialogoFinalTitulo)
+                .setMessage(R.string.txtDialogoFinalPregunta)
                 .setPositiveButton(
-                        getString(R.string.txtDialogoRecuperarPartidaAfirmativo),
+                        getString(R.string.txtDialogoFinalAfirmativo),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                main.miJuego.deserializaTablero(main.partidaGuardada);
-                                main.crearSnackbar(getString(R.string.txtPartidaRecuperada));
+                                main.miJuego.reiniciar();
                                 main.reiniciarCronometro();
                                 main.mostrarTablero();
                             }
                         }
                 )
                 .setNegativeButton(
-                        getString(R.string.txtDialogoRecuperarPartidaNegativo),
+                        getString(R.string.txtDialogoFinalNegativo),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                dismiss();
+                                main.finish();
                             }
                         }
                 );
 
-        return builder.create();
-    }
+		return builder.create();
+	}
 }

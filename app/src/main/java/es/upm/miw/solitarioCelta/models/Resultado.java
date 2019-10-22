@@ -1,4 +1,4 @@
-package es.upm.miw.SolitarioCelta.models;
+package es.upm.miw.solitarioCelta.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

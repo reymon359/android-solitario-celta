@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="es.upm.miw.SolitarioCelta"
+    package="es.upm.miw.solitarioCelta"
     android:versionCode="1"
     android:versionName="1.0">
 
@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
+            android:name="es.upm.miw.solitarioCelta.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AcercaDe"
+            android:name="es.upm.miw.solitarioCelta.AcercaDe"
             android:theme="@android:style/Theme.Material.Dialog.MinWidth"
             android:label="@string/aboutText" >
             <intent-filter>
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SCeltaPrefs"
+            android:name="es.upm.miw.solitarioCelta.SCeltaPrefs"
             android:theme="@style/AppTheme"
             android:label="@string/preferencesText" >
             <intent-filter>
@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ResultadosActivity"
+            android:name="es.upm.miw.solitarioCelta.ResultadosActivity"
             android:theme="@style/AppTheme"
             android:label="@string/txtOpcionMejoresResultados" >
             <intent-filter>

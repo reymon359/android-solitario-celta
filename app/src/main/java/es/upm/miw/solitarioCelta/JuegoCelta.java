@@ -1,9 +1,6 @@
-package es.upm.miw.SolitarioCelta;
+package es.upm.miw.solitarioCelta;
 
-import android.support.design.widget.Snackbar;
-
-import es.upm.miw.SolitarioCelta.models.RepositorioResultados;
-import es.upm.miw.SolitarioCelta.models.Resultado;
+import es.upm.miw.solitarioCelta.models.RepositorioResultados;
 
 class JuegoCelta {
 

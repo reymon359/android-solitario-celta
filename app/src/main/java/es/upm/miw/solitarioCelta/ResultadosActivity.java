@@ -1,18 +1,17 @@
-package es.upm.miw.SolitarioCelta;
+package es.upm.miw.solitarioCelta;
 
 import android.os.Bundle;
 
 
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.List;
 
-import es.upm.miw.SolitarioCelta.models.RepositorioResultados;
-import es.upm.miw.SolitarioCelta.models.Resultado;
-import es.upm.miw.SolitarioCelta.views.ResultadoAdapter;
+import es.upm.miw.solitarioCelta.models.RepositorioResultados;
+import es.upm.miw.solitarioCelta.models.Resultado;
+import es.upm.miw.solitarioCelta.views.ResultadoAdapter;
 
 public class ResultadosActivity extends AppCompatActivity {
 
