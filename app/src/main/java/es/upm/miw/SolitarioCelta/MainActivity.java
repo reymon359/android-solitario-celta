@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Obtener resultados
         listaResultados = repositorioResultados.readAll();
-        Log.i("listaResultados", listaResultados.toString());
+        Log.i("ramon 1", listaResultados.toString());
 
 
         miJuego = ViewModelProviders.of(this).get(SCeltaViewModel.class);
@@ -245,9 +245,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.opcRecuperarPartida:
                 recuperarPartida();
                 return true;
-
-            // TODO!!! resto opciones
-
+            case R.id.opcMejoresResultados:
+                startActivity(new Intent(this, ResultadosActivity.class));
+                return true;
             default:
                 crearSnackbar(getString(R.string.txtSinImplementar));
         }

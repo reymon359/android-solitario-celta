@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -92,4 +94,40 @@ public class RepositorioResultados extends SQLiteOpenHelper {
 
         return listaResultado;
     }
+
+    /**
+     * Recupera la Bebida indicada por el identificador
+     *
+     * @return Bebida
+     */
+    @Nullable
+    public Resultado get(Long idResultado) {
+        Resultado resultado = null;
+        String consultaSQL = "SELECT * FROM " + tablaResultado.TABLE_NAME
+                + " WHERE " + tablaResultado.COL_NAME_ID + " = " + idResultado;
+
+        // Accedo a la DB en modo lectura
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(consultaSQL, null);
+
+        if (cursor.moveToFirst()) {
+            resultado = cursor2Resultado(cursor);
+        }
+
+        cursor.close();
+        db.close();
+
+        return resultado;
+    }
+
+    @NonNull
+    private Resultado cursor2Resultado(@NonNull Cursor cursor) {
+        return new Resultado(
+                cursor.getInt(cursor.getColumnIndex(tablaResultado.COL_NAME_ID)),
+                cursor.getString(cursor.getColumnIndex(tablaResultado.COL_NAME_NOMBRE)),
+                new Date(cursor.getLong(cursor.getColumnIndex(tablaResultado.COL_NAME_FECHA))),
+                cursor.getInt(cursor.getColumnIndex(tablaResultado.COL_NAME_PIEZAS))
+        );
+    }
+
 }

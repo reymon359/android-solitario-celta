@@ -16,7 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
-
+    dataBinding {
+        enabled true
+    }
     return void
 }
 
