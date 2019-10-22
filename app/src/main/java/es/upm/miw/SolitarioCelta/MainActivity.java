@@ -84,13 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
         mostrarTablero();
         if (miJuego.juegoTerminado()) {
-            // TODO guardar puntuación
-            guardarResultado();
+            crono.stop();
+            guardarPuntuacion();
             new AlertDialogFragment().show(getFragmentManager(), "ALERT_DIALOG");
         }
     }
 
-    public void guardarResultado() {
+    public void guardarPuntuacion() {
         Long idNuevo = repositorioResultados.add("nombre", (int) System.currentTimeMillis(), miJuego.numeroFichas());
         if (idNuevo != null) {
             crearSnackbar(getString(R.string.txtResultadoGuardado) + idNuevo);
