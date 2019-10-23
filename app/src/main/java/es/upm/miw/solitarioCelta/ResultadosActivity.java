@@ -32,19 +32,28 @@ public class ResultadosActivity extends AppCompatActivity {
 
         // Crear repositorio
         repositorioResultados = new RepositorioResultados(getApplicationContext());
-        Log.i(LOG_TAG, "Número resultados = " + repositorioResultados.count());
 
-        // Obtener resultados
+        getResultados();
+
+        Button button = findViewById(R.id.btEliminarResultados);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new EliminarResultadosDialogFragment().show(getFragmentManager(), "ELIMINAR DIALOG");
+            }
+        });
+
+    }
+
+    public  void getResultados(){
         listaResultados = repositorioResultados.readAll();
 
-        Log.i("ramon 2", listaResultados.toString());
         Collections.sort(listaResultados, new Comparator<Resultado>() {
             @Override
             public int compare(Resultado o1, Resultado o2) {
                 return o1.getPiezas().compareTo(o2.getPiezas());
             }
         });
-
 
         ListView lvListaResultados = findViewById(R.id.lvResultados);
         final ResultadoAdapter resultadoAdapter = new ResultadoAdapter(
@@ -53,21 +62,10 @@ public class ResultadosActivity extends AppCompatActivity {
                 listaResultados
         );
         lvListaResultados.setAdapter(resultadoAdapter);
-
-
-        Button button = findViewById(R.id.btEliminarResultados);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Añadir acción
-                new EliminarResultadosDialogFragment().show(getFragmentManager(), "ELIMINAR DIALOG");
-            }
-        });
-
     }
 
     public void eliminarResultados(){
         repositorioResultados.deleteAll();
-
+        getResultados();
     }
 }

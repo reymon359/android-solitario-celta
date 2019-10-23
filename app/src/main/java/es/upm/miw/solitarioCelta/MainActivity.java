@@ -72,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
         miJuego = ViewModelProviders.of(this).get(SCeltaViewModel.class);
         mostrarTablero();
+        guardarPuntuacion();
+        guardarPuntuacion();
+        guardarPuntuacion();
     }
 
 

@@ -17,7 +17,6 @@ import static es.upm.miw.solitarioCelta.models.ResultadoContract.tablaResultado;
 
 public class RepositorioResultados extends SQLiteOpenHelper {
 
-
     private static final String NOMBRE_FICHERO = tablaResultado.TABLE_NAME + ".db";
     private static final int DATABASE_VERSION = 1;
 
@@ -69,13 +68,9 @@ public class RepositorioResultados extends SQLiteOpenHelper {
     }
 
     public void deleteAll() {
-
-
         SQLiteDatabase db = this.getReadableDatabase();
         db.execSQL("DELETE FROM " + tablaResultado.TABLE_NAME);
-
         db.close();
-
     }
 
     public List<Resultado> readAll() {
