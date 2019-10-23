@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -29,23 +30,28 @@ public class ResultadosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados);
-
+        Button button = findViewById(R.id.btEliminarResultados);
         // Crear repositorio
         repositorioResultados = new RepositorioResultados(getApplicationContext());
 
         getResultados();
 
-        Button button = findViewById(R.id.btEliminarResultados);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new EliminarResultadosDialogFragment().show(getFragmentManager(), "ELIMINAR DIALOG");
+                if (repositorioResultados.count() > 0) {
+                    new EliminarResultadosDialogFragment().show(getFragmentManager(), "ELIMINAR DIALOG");
+                } else {
+                    Snackbar.make(findViewById(android.R.id.content),
+                            getString(R.string.txtNoResultadosParaEliminar),
+                            Snackbar.LENGTH_LONG).show();
+                }
             }
         });
 
     }
 
-    public  void getResultados(){
+    public void getResultados() {
         listaResultados = repositorioResultados.readAll();
 
         Collections.sort(listaResultados, new Comparator<Resultado>() {
@@ -64,7 +70,7 @@ public class ResultadosActivity extends AppCompatActivity {
         lvListaResultados.setAdapter(resultadoAdapter);
     }
 
-    public void eliminarResultados(){
+    public void eliminarResultados() {
         repositorioResultados.deleteAll();
         getResultados();
     }

@@ -14,7 +14,7 @@
     <string name="txtResultadoGuardado">Se ha guardado el resultado con id:</string>
     <string name="txtErrorResultadoGuardado">Ha habido un error al guardar el resultado.</string>
     <string name="txtButtonEliminarResultados">Eliminar resultados</string>
-
+    <string name="txtNoResultadosParaEliminar">No hay resultados para eliminar</string>
 
         <!-- Diálogo Eliminar Resultados-->
         <string name="txtDialogoEliminarResultadosTitulo">eliminar Resultados</string>
