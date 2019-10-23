@@ -8,10 +8,10 @@ import java.util.Date;
 public class Resultado implements Parcelable {
     private int id;
     private String nombre;
-    private Date fecha;
+    private String fecha;
     private Integer piezas;
 
-    public Resultado(int id, String nombre, Date fecha, Integer piezas) {
+    public Resultado(int id, String nombre, String fecha, Integer piezas) {
         this.id = id;
         this.nombre = nombre;
         this.fecha = fecha;
@@ -30,11 +30,11 @@ public class Resultado implements Parcelable {
         this.nombre = nombre;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -46,11 +46,11 @@ public class Resultado implements Parcelable {
         this.piezas = piezas;
     }
 
+
     protected Resultado(Parcel in) {
         id = in.readInt();
         nombre = in.readString();
-        long tmpFecha = in.readLong();
-        fecha = tmpFecha != -1 ? new Date(tmpFecha) : null;
+        fecha = in.readString();
         piezas = in.readByte() == 0x00 ? null : in.readInt();
     }
 
@@ -59,12 +59,11 @@ public class Resultado implements Parcelable {
         return 0;
     }
 
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(nombre);
-        dest.writeLong(fecha != null ? fecha.getTime() : -1L);
+        dest.writeString(fecha);
         if (piezas == null) {
             dest.writeByte((byte) (0x00));
         } else {
@@ -85,6 +84,7 @@ public class Resultado implements Parcelable {
             return new Resultado[size];
         }
     };
+
 
     @Override
     public String toString() {

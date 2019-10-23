@@ -23,7 +23,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import es.upm.miw.solitarioCelta.models.RepositorioResultados;
 import es.upm.miw.solitarioCelta.models.Resultado;
@@ -72,9 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
         miJuego = ViewModelProviders.of(this).get(SCeltaViewModel.class);
         mostrarTablero();
-        guardarPuntuacion();
-        guardarPuntuacion();
-        guardarPuntuacion();
     }
 
 
@@ -130,7 +130,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void guardarPuntuacion() {
-        Long idNuevo = repositorioResultados.add(nombre_Jugador, (int) System.currentTimeMillis(), miJuego.numeroFichas());
+
+        String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss: ", Locale.getDefault())
+                .format(new Date());
+        crearSnackbar(date);
+//        fos.write(date.getBytes());
+
+        Long idNuevo = repositorioResultados.add(nombre_Jugador, date, miJuego.numeroFichas());
         if (idNuevo != null) {
             crearSnackbar(getString(R.string.txtResultadoGuardado) + idNuevo);
         } else {

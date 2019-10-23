@@ -24,7 +24,7 @@ public class RepositorioResultados extends SQLiteOpenHelper {
             "CREATE TABLE " + tablaResultado.TABLE_NAME + " (" +
                     tablaResultado._ID + " INTEGER PRIMARY KEY," +
                     tablaResultado.COL_NAME_NOMBRE + " TEXT," +
-                    tablaResultado.COL_NAME_FECHA + " INT," +
+                    tablaResultado.COL_NAME_FECHA + " TEXT," +
                     tablaResultado.COL_NAME_PIEZAS + " INT)";
 
 
@@ -55,7 +55,7 @@ public class RepositorioResultados extends SQLiteOpenHelper {
         return DatabaseUtils.queryNumEntries(db, tablaResultado.TABLE_NAME);
     }
 
-    public long add(String nombre, Integer fecha, Integer piezas) {
+    public long add(String nombre, String fecha, Integer piezas) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         ContentValues values = new ContentValues();
@@ -86,7 +86,7 @@ public class RepositorioResultados extends SQLiteOpenHelper {
                 Resultado resultado = new Resultado(
                         cursor.getInt(cursor.getColumnIndex(tablaResultado.COL_NAME_ID)),
                         cursor.getString(cursor.getColumnIndex(tablaResultado.COL_NAME_NOMBRE)),
-                        new Date(cursor.getLong(cursor.getColumnIndex(tablaResultado.COL_NAME_FECHA))),
+                        cursor.getString(cursor.getColumnIndex(tablaResultado.COL_NAME_FECHA)),
                         cursor.getInt(cursor.getColumnIndex(tablaResultado.COL_NAME_PIEZAS))
                 );
                 listaResultado.add(resultado);
@@ -130,7 +130,7 @@ public class RepositorioResultados extends SQLiteOpenHelper {
         return new Resultado(
                 cursor.getInt(cursor.getColumnIndex(tablaResultado.COL_NAME_ID)),
                 cursor.getString(cursor.getColumnIndex(tablaResultado.COL_NAME_NOMBRE)),
-                new Date(cursor.getLong(cursor.getColumnIndex(tablaResultado.COL_NAME_FECHA))),
+                cursor.getString(cursor.getColumnIndex(tablaResultado.COL_NAME_FECHA)),
                 cursor.getInt(cursor.getColumnIndex(tablaResultado.COL_NAME_PIEZAS))
         );
     }
