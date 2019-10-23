@@ -26,6 +26,7 @@ public class ResultadoAdapter extends ArrayAdapter {
     private int idLayout;
     private List<Resultado> listaResultados;
     private static LayoutInflater layoutInflater = null;
+
     /**
      * Constructor
      *
@@ -58,32 +59,6 @@ public class ResultadoAdapter extends ArrayAdapter {
         // Enlaza la entidad (Bebida) con la vista
         itemListaBinding.setResultado(listaResultados.get(position));
 
-//        TextView tvNombre     = vista.findViewById(R.id.tvBebidaNombre);
-//        TextView tvOrigen     = vista.findViewById(R.id.tvBebidaOrigen);
-//        TextView tvGraduacion = vista.findViewById(R.id.tvBebidaGraduacion);
-//        TextView tvAzucar     = vista.findViewById(R.id.tvBebidaAzucar);
-//
-//        // Asignar contenido
-//        tvNombre.setText(bebida.getNombre());
-//        tvOrigen.setText(bebida.getOrigen());
-//        tvGraduacion.setText(String.format(Locale.getDefault(), "%4.1f", bebida.getGraduacion()));
-//        tvAzucar.setText(bebida.getAzucar() ? "sí" : "no");
-
-        return itemListaBinding.getRoot();
-    }
-//    @NonNull
-//    @Override
-//    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-//        LinearLayout vista;
-//        Resultado resultado = listaResultados.get(position);
-//
-//        if (null == convertView) {
-//            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-//            vista = (LinearLayout) layoutInflater.inflate(idLayout, parent, false);
-//        } else {
-//            vista = (LinearLayout) convertView;
-//        }
-//
 //        TextView tvNombre = vista.findViewById(R.id.tvResultadoNombre);
 //        TextView tvFecha = vista.findViewById(R.id.tvResultadoFecha);
 //        TextView tvPiezas = vista.findViewById(R.id.tvResultadoPiezas);
@@ -93,7 +68,7 @@ public class ResultadoAdapter extends ArrayAdapter {
 //        tvNombre.setText(resultado.getNombre());
 //        tvFecha.setText(resultado.getFecha().toString());
 //        tvPiezas.setText(resultado.getPiezas());
-//
-//        return vista;
-//    }
+
+        return itemListaBinding.getRoot();
+    }
 }

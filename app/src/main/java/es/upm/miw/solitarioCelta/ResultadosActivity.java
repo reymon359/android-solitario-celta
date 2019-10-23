@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import es.upm.miw.solitarioCelta.models.RepositorioResultados;
@@ -31,7 +33,14 @@ public class ResultadosActivity extends AppCompatActivity {
 
         // Obtener resultados
         listaResultados = repositorioResultados.readAll();
+
         Log.i("ramon 2", listaResultados.toString());
+        Collections.sort(listaResultados, new Comparator<Resultado>() {
+            @Override
+            public int compare(Resultado o1, Resultado o2) {
+                return o1.getPiezas().compareTo(o2.getPiezas());
+            }
+        });
 
 
         ListView lvListaResultados = findViewById(R.id.lvResultados);
