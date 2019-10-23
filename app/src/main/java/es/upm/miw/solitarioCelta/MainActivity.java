@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void recogerPreferencias(Context context) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        nombre_Jugador = sharedPref.getString("nombreJugador", "nombreDefault");
+        nombre_Jugador = sharedPref.getString("nombreJugador", "Ramon");
         cronometro_activo = sharedPref.getBoolean("mostrarCronometro", true);
         fichas_restantes = sharedPref.getBoolean("mostrarFichasRestantes", true);
         crono.setVisibility((cronometro_activo) ? View.VISIBLE : View.INVISIBLE);

@@ -13,6 +13,15 @@
     <!-- Resultado -->
     <string name="txtResultadoGuardado">Se ha guardado el resultado con id:</string>
     <string name="txtErrorResultadoGuardado">Ha habido un error al guardar el resultado.</string>
+    <string name="txtButtonEliminarResultados">Eliminar resultados</string>
+
+
+        <!-- Diálogo Eliminar Resultados-->
+        <string name="txtDialogoEliminarResultadosTitulo">eliminar Resultados</string>
+        <string name="txtDialogoEliminarResultadosPregunta">¿Deseas eliminar los resultados?</string>
+        <string name="txtDialogoeliminarResultadosAfirmativo">Sí</string>
+        <string name="txtDialogoEliminarResultadosNegativo">No</string>
+
 
     <!-- Guardar Partida -->
     <string name="txtPartidaGuardada">¡Partida Guardada!</string>
@@ -59,7 +68,7 @@
     <!-- Informacion Partida -->
     <string name="txtFichasRestantes">Fichas restantes: </string>
     <string name="txtCronometro">Tiempo: </string>
-
+    <string name="title_activity_main2">Main2Activity</string>
 
 
 </resources>

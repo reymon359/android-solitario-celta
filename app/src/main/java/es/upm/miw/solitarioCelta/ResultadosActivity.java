@@ -3,8 +3,11 @@ package es.upm.miw.solitarioCelta;
 import android.os.Bundle;
 
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.Collections;
@@ -50,6 +53,21 @@ public class ResultadosActivity extends AppCompatActivity {
                 listaResultados
         );
         lvListaResultados.setAdapter(resultadoAdapter);
+
+
+        Button button = findViewById(R.id.btEliminarResultados);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Añadir acción
+                new EliminarResultadosDialogFragment().show(getFragmentManager(), "ELIMINAR DIALOG");
+            }
+        });
+
+    }
+
+    public void eliminarResultados(){
+        repositorioResultados.deleteAll();
 
     }
 }

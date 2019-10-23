@@ -68,6 +68,16 @@ public class RepositorioResultados extends SQLiteOpenHelper {
         return newRowId;
     }
 
+    public void deleteAll() {
+
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("DELETE FROM " + tablaResultado.TABLE_NAME);
+
+        db.close();
+
+    }
+
     public List<Resultado> readAll() {
         String consultaSQL = "SELECT * FROM " + tablaResultado.TABLE_NAME;
         List<Resultado> listaResultado = new ArrayList<>();
